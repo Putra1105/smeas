@@ -12,15 +12,21 @@ if(isset($_POST['simpan'])){
 	$nama		= $_POST['nama'];	//membuat variabel $nama dan datanya dari inputan Nama Lengkap
 	$kelas		= $_POST['kelas'];	//membuat variabel $kelas dan datanya dari inputan dropdown Kelas
 	$jurusan	= $_POST['jurusan'];	//membuat variabel $jurusan dan datanya dari inputan dropdown Jurusan
-
+	
 	$gambar		= $_FILES['gambar']['name'];
+	$tmpFile	= $_FILES['gambar']['tmp_name'];
+	$dir = 'image/';
+	
 
+	move_uploaded_file($tmpFile, $dir.$gambar);
+	
+	
 	$queryShow = "SELECT * FROM sys_users WHERE id_user='$id'";
 	$sqlShow = mysqli_query($koneksi ,$queryShow);
 	$result = mysqli_fetch_assoc($sqlShow);
 
-	var_dump($_FILES);
-	die();
+	unlink('image/'.$result['image']);
+
 
 	if($_FILES['gambar']['name'] == ""){
 		echo "kosong";
@@ -30,7 +36,7 @@ if(isset($_POST['simpan'])){
 
 	//melakukan query dengan perintah UPDATE untuk update data ke database dengan kondisi WHERE siswa_id='$id' <- diambil dari inputan hidden id
 	//$update = mysql_query("UPDATE siswa SET siswa_nis='$nis', siswa_nama='$nama', siswa_kelas='$kelas', siswa_jurusan='$jurusan' WHERE siswa_id='$id'") or die(mysql_error());
-    $sql = "UPDATE sys_users SET name='$nama', class='$kelas', major='$jurusan' WHERE id_user='$id'";
+    $sql = "UPDATE sys_users SET name='$nama', class='$kelas', major='$jurusan', image='$gambar' WHERE id_user='$id'";
 
 
 	//jika query update sukses

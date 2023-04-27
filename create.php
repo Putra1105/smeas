@@ -4,9 +4,10 @@
 <head>
     <link rel="stylesheet" href="./assets/css/style.bundle.css">
 </head>
-<body>
+
+<body style="overflow:hidden">
     <div class="container">
-        <div class="">
+        <div>
             <h3>Tambah Data Siswa</h3>
         </div>
         <div class="row">
@@ -50,10 +51,13 @@
                         </select>
                     </div>
                 </div>
-                <div class="col-md-12">
+                <div class="col-md-12 mt-3">
                     <div class="col-md-12">
                         <label class="form-label">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" accept="image/*"></td>
+                        <input type="file" name="gambar" id="gambar" accept="image/*" onchange="previewImage()">
+                        <br>
+                        <img src="" alt="Empty Image" width="150" id="preview" class="my-3">
+
                     </div>
                 </div>
                 <div class="col-md-12">
@@ -64,4 +68,19 @@
     </div>
 </body>
 
+<script>
+function previewImage() {
+    var file = document.getElementById('gambar').files[0];
+    var reader = new FileReader();
+
+
+    reader.onload = function(e) {
+        var previewImage = document.getElementById('preview');
+        previewImage.src = e.target.result;
+    }
+
+    reader.readAsDataURL(file);
+
+}
+</script>
 <?php include('footer.php'); ?>
