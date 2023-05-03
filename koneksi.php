@@ -2,7 +2,7 @@
 // Koneksi MySQLi Procedural
 $db['host'] = "localhost"; //host
 $db['user'] = "root"; //username database
-$db['pass'] = ""; //password database
+$db['pass'] = "123"; //password database
 $db['name'] = "smeas"; //nama database
 
 $koneksi = mysqli_connect($db['host'], $db['user'], $db['pass'], $db['name']);
