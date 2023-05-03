@@ -18,20 +18,20 @@ $result = mysqli_query($koneksi, $sql);
 //cek apakah data dari hasil query ada atau tidak
 if(mysqli_num_rows($result) == 0){
 
-	//jika tidak ada data yg sesuai maka akan langsung di arahkan ke halaman depan atau beranda -> index.php
-	echo '<script>window.history.back()</script>';
+    //jika tidak ada data yg sesuai maka akan langsung di arahkan ke halaman depan atau beranda -> index.php
+    echo '<script>window.history.back()</script>';
 
 }else{
 
-	//jika data ditemukan, maka membuat variabel $data
-	$data = mysqli_fetch_assoc($result);	//mengambil data ke database yang nantinya akan ditampilkan di form edit di bawah
+    //jika data ditemukan, maka membuat variabel $data
+    $data = mysqli_fetch_assoc($result);	//mengambil data ke database yang nantinya akan ditampilkan di form edit di bawah
 
 }
 ?>
 
 
 
-<body style="overflow: hidden">
+    <body style="overflow: hidden">
     <div class="container">
         <div>
             <h3>Edit Data Siswa</h3>
@@ -43,11 +43,11 @@ if(mysqli_num_rows($result) == 0){
                 <div class="col-md-12 py-2" style="display: flex;">
                     <div class="col-md-6 me-1">
                         <label class="form-label">Nama Lengkap</label>
-                        <input class="form-control form-control-sm" type="text" name="nama" size="30" value="<?php echo $data['name']; ?>" required>
+                        <input class="form-control form-control-sm" type="text" name="nama" size="30" value="<?php echo $data['name']; ?>" disabled>
                     </div>
                     <div class="col-md-6 ms-1">
                         <label class="form-label">Kelas</label>
-                        <select class="form-select form-select-sm" name="kelas" required>
+                        <select class="form-select form-select-sm" name="kelas" disabled>
                             <option value="">Pilih Kelas</option>
                             <option value="X" <?php if($data['class'] == 'X'){ echo 'selected'; } ?>>X</option>
                             <option value="XI" <?php if($data['class'] == 'XI'){ echo 'selected'; } ?>>XI</option>
@@ -56,9 +56,9 @@ if(mysqli_num_rows($result) == 0){
                     </div>
                 </div>
                 <div class="col-md-12 py-2" style="display: flex;">
-                    <div class="col-md-6">
+                    <div class="col-md-6 me-1">
                         <label class="form-label">Jurusan</label>
-                        <select class="form-select form-select-sm" name="jurusan" required>
+                        <select class="form-select form-select-sm" name="jurusan" disabled>
                             <option value="">Pilih Jurusan</option>
                             <option value="RPL" <?php if($data['major'] == 'RPL'){ echo 'selected'; } ?>>RPL</option>
                             <option value="Multimedia" <?php if($data['major'] == 'Multimedia'){ echo 'selected'; } ?>>Multimedia</option>
@@ -69,38 +69,26 @@ if(mysqli_num_rows($result) == 0){
                             <option value="Desain Komunikasi Visual" <?php if($data['major'] == 'Desain Komunikasi Visual'){ echo 'selected'; } ?>>Desain Komunikasi Visual</option>
                         </select>
                     </div>
+                    <div class="col-md-6 ms-1">
+                        <label class="form-label">Role</label>
+                        <select class="form-select form-select-sm" name="role" disabled>
+                            <option value="">Pilih Role</option>
+                            <option value="1" <?php if($data['role_id'] == '1'){ echo 'selected'; } ?>>Admin</option>
+                            <option value="2" <?php if($data['role_id'] == '2'){ echo 'selected'; } ?>>Teacher</option>
+                            <option value="3" <?php if($data['role_id'] == '3'){ echo 'selected'; } ?>>Student</option>
+                        </select>
+                    </div>
                 </div>
                 <div class="col-md-12 mt-3">
                     <div class="col-md-12">
                         <label class="form-label">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" accept="image/*" onchange="previewImage()">
                         <br>
-                        <img src="image\<?= $data['image'] ?>" width="200" id="preview" class="my-3">
+                        <img src="image\<?= $data['image'] ?>" width="300" class="my-3">
 
                     </div>
-                </div>
-                <div class="col-md-12">
-                    <input type="submit" name="simpan" value="Simpan">
                 </div>
             </form>
         </div>
     </div>
-</body>
-
-
-<script>
-function previewImage() {
-    var file = document.getElementById('gambar').files[0];
-    var reader = new FileReader();
-
-
-    reader.onload = function(e) {
-        var previewImage = document.getElementById('preview');
-        previewImage.src = e.target.result;
-    }
-
-    reader.readAsDataURL(file);
-
-}
-</script>
+    </body>
 <?php include('footer.php'); ?>

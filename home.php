@@ -1,6 +1,7 @@
  <?php include('header.php'); ?>
 <head>
     <title>Home</title>
+<!--    <script src="https://unpkg.com/feather-icons"></script>-->
     <link rel="stylesheet" href="./assets/css/style.bundle.css">
 </head>
 <body>
@@ -62,7 +63,7 @@
                                         echo '<td>'.$data['class'].'</td>';	//menampilkan data kelas dari database
                                         echo '<td>'.$data['major'].'</td>';	//menampilkan data jurusan dari database
                                         echo '<td><img style="width: 80px" src="./image/'.$data['image'].'"/></td>';
-                                        echo '<td><a class="btn btn-sm btn-warning" href="update.php?id='.$data['id_user'].'">Edit</a><a class="btn btn-sm btn-danger ms-4" href="delete.php?id='.$data['id_user'].'" onclick="return confirm(\'Yakin?\')">Hapus</a></td>';	//menampilkan link edit dan hapus dimana tiap link terdapat GET id -> ?id=siswa_id
+                                        echo '<td><a class="btn btn-sm btn-primary me-2" href="view.php?id='.$data['id_user'].'">Detail</a><a class="btn btn-sm btn-warning" href="update.php?id='.$data['id_user'].'">Edit</a><a class="btn btn-sm btn-danger ms-2" href="delete.php?id='.$data['id_user'].'" onclick="return confirm(\'Yakin?\')">Hapus</a></td>';	//menampilkan link edit dan hapus dimana tiap link terdapat GET id -> ?id=siswa_id
                                         echo '</tr>';
 
                                         $no++;	//menambah jumlah nomor urut setiap row
@@ -82,6 +83,9 @@
             </div>
         </div>
     </div>
+    <!--<script>
+        feather.replace()
+    </script>-->
 </body>
 
 
