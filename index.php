@@ -25,10 +25,6 @@ session_start();
                 <label>Password</label>
             </div>
             <input type="submit" value="login">
-                <span></span>
-                <span></span>
-                <span></span>
-                <span></span>
             </input>
         </form>
     </div>

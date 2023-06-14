@@ -16,7 +16,6 @@ if(isset($_POST['simpan'])){
 	$gambar		= $_FILES['gambar']['name'];
 	$tmpFile	= $_FILES['gambar']['tmp_name'];
 	$dir = 'image/';
-	
 
 	move_uploaded_file($tmpFile, $dir.$gambar);
 	
@@ -25,13 +24,12 @@ if(isset($_POST['simpan'])){
 	$sqlShow = mysqli_query($koneksi ,$queryShow);
 	$result = mysqli_fetch_assoc($sqlShow);
 
-	unlink('image/'.$result['image']);
-
 
 	if($_FILES['gambar']['name'] == ""){
-		echo "kosong";
+		$gambar = $_POST['oldImage'];
 	}else{
-		echo "ada isi";
+		$gambar = $_FILES['gambar']['name'];
+		unlink('image/'.$result['oldImage']);
 	}
 
 	//melakukan query dengan perintah UPDATE untuk update data ke database dengan kondisi WHERE siswa_id='$id' <- diambil dari inputan hidden id

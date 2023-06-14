@@ -10,7 +10,7 @@
         <div>
             <h3>Tambah Data Siswa</h3>
         </div>
-        <div class="row">
+        <div class="row form">
             <form action="create-proses.php" method="post" enctype="multipart/form-data">
                 <div class="col-md-12 py-2" style="display: flex;">
                     <div class="col-md-6 me-1">
@@ -53,8 +53,8 @@
                 </div>
                 <div class="col-md-12 mt-3">
                     <div class="col-md-12">
-                        <label class="form-label">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" accept="image/*" onchange="previewImage()">
+                        <label class="form-label" for="gambar">Gambar</label>
+                        <input class="form-control text-form-gambar" type="file" name="gambar" id="gambar" accept="image/*" onchange="previewImage()">
                         <br>
                         <img src="" alt="Empty Image" width="150" id="preview" class="my-3">
 

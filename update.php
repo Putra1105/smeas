@@ -39,6 +39,7 @@ if(mysqli_num_rows($result) == 0){
         <div class="row">
             <form action="update-proses.php" method="post" enctype="multipart/form-data">
                 <input type="hidden" name="id" value="<?php echo $id; ?>">
+                <input type="hidden" name="oldImage" value="<?= $data['image']; ?>">
                 <!-- membuat inputan hidden dan nilainya adalah siswa_id -->
                 <div class="col-md-12 py-2" style="display: flex;">
                     <div class="col-md-6 me-1">
@@ -72,8 +73,8 @@ if(mysqli_num_rows($result) == 0){
                 </div>
                 <div class="col-md-12 mt-3">
                     <div class="col-md-12">
-                        <label class="form-label">Gambar</label>
-                        <input type="file" name="gambar" id="gambar" accept="image/*" onchange="previewImage()">
+                        <label class="form-label" for="gambar">Gambar</label>
+                        <input class="form-control text-form-gambar" type="file" name="gambar" id="gambar" accept="image/*" onchange="previewImage()">
                         <br>
                         <img src="image\<?= $data['image'] ?>" width="200" id="preview" class="my-3">
 
